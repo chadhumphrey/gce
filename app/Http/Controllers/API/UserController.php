@@ -4,8 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\API\BaseController as BaseController;
 use Validator;
-use App\Models\Blog;
-use App\Http\Resources\Blog as BlogResource;
+use App\Models\User;
+use App\Http\Resources\UserResource;
 
 use Illuminate\Http\Request;
 
@@ -16,8 +16,8 @@ class UserController extends BaseController
      */
     public function index()
     {
-        $blogs = Blog::all();
-        return $this->sendResponse(BlogResource::collection($blogs), 'Posts fetched.');//
+        $blogs = User::all();
+        return $this->sendResponse(UserResource::collection($blogs), 'Posts fetched.');//
     }
 
     /**
@@ -34,7 +34,7 @@ class UserController extends BaseController
             return $this->sendError($validator->errors());
         }
         $blog = Blog::create($input);
-        return $this->sendResponse(new BlogResource($blog), 'Post created.');
+        return $this->sendResponse(new UserResource($blog), 'Post created.');
     }
 
     /**
@@ -54,7 +54,7 @@ class UserController extends BaseController
         if (is_null($blog)) {
             return $this->sendError('Post does not exist.');
         }
-        return $this->sendResponse(new BlogResource($blog), 'Post fetched.');
+        return $this->sendResponse(new UserResource($blog), 'Post fetched.');
     }
 
     /**
@@ -82,7 +82,7 @@ class UserController extends BaseController
         $blog->description = $input['description'];
         $blog->save();
 
-        return $this->sendResponse(new BlogResource($blog), 'Post updated.');
+        return $this->sendResponse(new UserResource($blog), 'Post updated.');
     }
 
     /**

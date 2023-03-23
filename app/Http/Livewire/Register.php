@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Livewire;
+use App\User;
 
 use Livewire\Component;
 
@@ -30,12 +31,12 @@ class Register extends Component
 
     public function render()
     {
-
-      return view('livewire.register')
-
-          ->extends('layouts.app')
-
-          ->section('body');
-        // return view('livewire.register');
+    //
+    //   // return view('livewire.register')
+    //
+    //       // ->extends('layouts.app')
+    //
+    //       // ->section('body');
+        return view('register');
     }
 }

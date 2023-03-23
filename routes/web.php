@@ -20,3 +20,10 @@ Route::get('/', function () {
 Route::get('/register', function(){
   return view('register');
 });
+Route::get('/buster', function(){
+  return view('buster');
+});
+Route::get('/chart', function(){
+  echo "hello hcart";
+  return view('chart');
+});

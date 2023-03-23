@@ -26,12 +26,12 @@
         <div></div>
       </article>
     </main><!-- ./ Main -->
-
+---{{$email}}---
 
 <main class="container">
   <article class="grid">
 
-    <form wire:submit.prevent="resgister">
+    <form wire:submit.prevent="register">
         <div>
             <label for="email">Email</label>
             <input wire:model="email" type="text" id="email" name="email" />
@@ -47,10 +47,10 @@
             <input wire:model="passwordConfirmation" type="password" id="passwordConfirmation" name="passwordConfirmation" />
             @error('passwordConfirmation')<span>{{$message}}</span>@enderror
         </div>
-        <!-- <input type="submit" /> -->
-        <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+        <input type="submit" />
+        <!-- <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
                             Register
-                        </button>
+                        </button> -->
       </form>
   </article>
 </main>

@@ -2,40 +2,29 @@
 
 namespace App\Http\Livewire;
 
+use App\User;
 use Livewire\Component;
 
 class Register extends Component
 {
-    public $email ='';
-    public $password ='';
-    public $passwordConfirmation ='';
+    public $name= '';
+    public $email= '';
+    public $password= '';
+    public $password_confirmation = '';
 
-    public function register(){
-
-      $data= $this->validate([
-        'email'=>'required|email|unique:users',
-        'password'=>'required|min:6|same:passwordConfirmation'
-      ]);
-
-      $user = User::create([
-        'email' => '',
-        'password' => Hash::make()
-      ]);
-
-      auth()->login($user);
-
-
-      return redirect('/');
+    public function submit()
+    {
+        $this->validate([
+            'form.email'    => 'required|email',
+            'form.name'     => 'required',
+            'form.password' => 'required|confirmed',
+        ]);
+        User::create($this->form);
+        return redirect(route('login'));
     }
 
     public function render()
     {
-
-      return view('livewire.register')
-
-          ->extends('layouts.app')
-
-          ->section('body');
-        // return view('livewire.register');
+        return view('livewire.register');
     }
 }

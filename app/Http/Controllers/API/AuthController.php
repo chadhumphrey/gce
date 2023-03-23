@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\Auth;
@@ -10,21 +9,23 @@ use App\Models\User;
 
 class AuthController extends BaseController
 {
-    public function signin(Request $request)
+    public function login(Request $request)
     {
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $authUser = Auth::user();
             $success['token'] =  $authUser->createToken('MyAuthApp')->plainTextToken;
             $success['name'] =  $authUser->name;
 
             return $this->sendResponse($success, 'User signed in');
-        }
-        else{
+        } else {
             return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
         }
     }
-    public function signup(Request $request)
+
+    public function register(Request $request)
     {
+        $x="hello";
+        dd(__LINE__, __METHOD__, $x);
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
@@ -32,7 +33,7 @@ class AuthController extends BaseController
             'confirm_password' => 'required|same:password',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return $this->sendError('Error validation', $validator->errors());
         }
 
@@ -45,4 +46,12 @@ class AuthController extends BaseController
         return $this->sendResponse($success, 'User created successfully.');
     }
 
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+
+        return [
+           'message' => 'Tokens Revoked'
+       ];
+    }
 }

@@ -2,4 +2,3 @@
 @section('content')
   @livewire('register')
 @endsection
-  

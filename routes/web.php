@@ -1,7 +1,7 @@
 <?php
 
 // use Illuminate\Support\Facades\Route;
-
+use App\Http\Livewire\Dashboard;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +16,15 @@
 // Route::get('/', function () {
 //     return view('dashboard');
 // });
+// Route::get('/edit/{$id}', 'livewire.dashboard.edit');
+
+
+
+Route::view('/','dashboard');
+// Route::view('/email/{id}',  'livewire.show');
+// Route::get('/email/{id}', \App\Http\Livewire\Dashboard::class,'show');
+
+
 // Route::view('/register', 'livewire.register');
 // Route::get('/login', function(){
 //   return view('login');
@@ -26,10 +35,9 @@
 
 // Route::get('/', ['App\Http\Livewire\class::home'])->name('home')->middleware('auth');
 // Route::group(['middleware'=>'guest'], function () {
-    // Route::get('/login',    App\Http\Livewire\Login::class)->name('login');
-    Route::view('login','livewire.login');
+    // Route::view('login','livewire.login');
 
-    Route::get('/register',    App\Http\Livewire\Register::render);
+    // Route::get('/register',    App\Http\Livewire\Register::render);
 
     // Route::get('register', 'livewire.register');
 // });

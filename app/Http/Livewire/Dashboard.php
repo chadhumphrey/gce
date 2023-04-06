@@ -8,11 +8,32 @@ use App\Models\Spammers;
 
 class Dashboard extends Component
 {
-    public $users, $total_emails;
+    public $emails, $email,$total_emails,$barf;
+    public $updateMode = false;
+
+
+
     public function render()
     {
-      $this->total_emails = 10;
-        $this->users =Spammers::orderBy('id', 'asc')->limit(10)->get();
-        return view('livewire.dashboard');
+        $this->emails =Spammers::orderBy('id', 'desc')->limit(10)->get();
+        $this->total_emails =Spammers::orderBy('id', 'asc')->get()->count();
+
+        return view('livewire.dashboard')
+        ->section('content')
+        ->extends('layouts.app');
     }
+
+
+   public function show($id)
+   {
+       $this->email = Spammers::find($id);
+       $this->updateMode = true;
+   }
+
+   public function cancel()
+   {
+     $this->updateMode = false;
+     $this->email='';
+   }
+
 }
